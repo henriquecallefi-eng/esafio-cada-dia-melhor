@@ -1,0 +1,8 @@
+id,name,title,role,icon,squad,activation
+beatriz-briefing,Beatriz Briefing,Estrategista de Briefing,agent,📋,builder-landing-page,true
+carlos-copy,Carlos Copy,Redator de Conversão,agent,✍️,builder-landing-page,true
+diana-design,Diana Design,Arquiteta de Design,agent,🎨,builder-landing-page,true
+henrique-html,Henrique HTML,Construtor de Páginas,agent,💻,builder-landing-page,true
+ana-animacao,Ana Animação,Integradora de Animações,agent,✨,builder-landing-page,true
+rodrigo-revisao,Rodrigo Revisão,Auditor de Qualidade,agent,✅,builder-landing-page,true
+pedro-publicacao,Pedro Publicação,Agente de Deploy,agent,🚀,builder-landing-page,true

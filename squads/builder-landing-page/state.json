@@ -1,0 +1,75 @@
+{
+  "squad": "builder-landing-page",
+  "status": "running",
+  "step": {
+    "current": 4,
+    "total": 14,
+    "label": "step-04-carlos-copy"
+  },
+  "agents": [
+    {
+      "id": "beatriz-briefing",
+      "name": "Beatriz Briefing",
+      "icon": "📋",
+      "status": "done",
+      "deliverTo": null,
+      "desk": { "col": 1, "row": 1 }
+    },
+    {
+      "id": "carlos-copy",
+      "name": "Carlos Copy",
+      "icon": "✍️",
+      "status": "working",
+      "deliverTo": null,
+      "desk": { "col": 2, "row": 1 }
+    },
+    {
+      "id": "diana-design",
+      "name": "Diana Design",
+      "icon": "🎨",
+      "status": "idle",
+      "deliverTo": null,
+      "desk": { "col": 3, "row": 1 }
+    },
+    {
+      "id": "henrique-html",
+      "name": "Henrique HTML",
+      "icon": "💻",
+      "status": "idle",
+      "deliverTo": null,
+      "desk": { "col": 1, "row": 2 }
+    },
+    {
+      "id": "ana-animacao",
+      "name": "Ana Animação",
+      "icon": "✨",
+      "status": "idle",
+      "deliverTo": null,
+      "desk": { "col": 2, "row": 2 }
+    },
+    {
+      "id": "rodrigo-revisao",
+      "name": "Rodrigo Revisão",
+      "icon": "✅",
+      "status": "idle",
+      "deliverTo": null,
+      "desk": { "col": 3, "row": 2 }
+    },
+    {
+      "id": "pedro-publicacao",
+      "name": "Pedro Publicação",
+      "icon": "🚀",
+      "status": "idle",
+      "deliverTo": null,
+      "desk": { "col": 1, "row": 3 }
+    }
+  ],
+  "handoff": {
+    "from": "beatriz-briefing",
+    "to": "carlos-copy",
+    "message": "Brief estruturado aprovado com 3 variantes de copy prontas para teste",
+    "completedAt": "2026-04-03T11:40:00.000Z"
+  },
+  "startedAt": "2026-04-03T11:37:32.000Z",
+  "updatedAt": "2026-04-03T11:40:00.000Z"
+}

@@ -1,0 +1,53 @@
+name: Builder Landing Pages
+code: builder-landing-page
+version: "1.0.0"
+description: >
+  Squad de construção de landing pages e websites com dois modos operacionais:
+  Modo B (padrão) — Hybrid: design Stitch + código Claude.
+  Modo A — Pure Claude: pipeline completo 100% IA para comparação.
+  Deploy automático em GitHub Pages com auditorias de qualidade.
+
+modes:
+  mode_b:
+    name: "Hybrid (Padrão)"
+    description: "Stitch → Diana extrai tokens → Henrique constrói HTML → Ana integra componentes externos → Deploy GitHub Pages"
+    default: true
+  mode_a:
+    name: "Pure Claude"
+    description: "Brief → Copy → Design System → HTML → Animações GSAP → QA → Deploy (100% IA)"
+
+skills:
+  - web_search
+  - web_fetch
+  - frontend-design
+  - ui-ux-pro-max
+  - nano-banana-2
+
+data:
+  - pipeline/data/rec-brand-brief.md
+  - pipeline/data/conversion-principles.md
+  - pipeline/data/conversion-architecture.md
+  - pipeline/data/design-references.md
+  - pipeline/data/section-templates.md
+  - pipeline/data/animation-library.md
+  - pipeline/data/anti-patterns.md
+  - pipeline/data/seo-checklist.md
+  - pipeline/data/deployment-guide.md
+  - pipeline/data/iteration-loop.md
+
+pipeline:
+  steps:
+    - pipeline/steps/step-01-coleta-briefing.md
+    - pipeline/steps/step-02-beatriz-briefing.md
+    - pipeline/steps/step-03-aprovacao-brief.md
+    - pipeline/steps/step-04-carlos-copy.md
+    - pipeline/steps/step-05-aprovacao-copy.md
+    - pipeline/steps/step-06-diana-design.md
+    - pipeline/steps/step-07-aprovacao-design-system.md
+    - pipeline/steps/step-08-henrique-html.md
+    - pipeline/steps/step-09-aprovacao-estrutura.md
+    - pipeline/steps/step-10-ana-animacao.md
+    - pipeline/steps/step-11-rodrigo-revisao.md
+    - pipeline/steps/step-12-aprovacao-qa.md
+    - pipeline/steps/step-13-pedro-publicacao.md
+    - pipeline/steps/step-14-entrega-final.md

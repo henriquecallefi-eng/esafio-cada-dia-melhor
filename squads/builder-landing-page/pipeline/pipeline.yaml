@@ -1,0 +1,17 @@
+name: builder-landing-page
+version: "1.0.0"
+steps:
+  - pipeline/steps/step-01-coleta-briefing.md
+  - pipeline/steps/step-02-beatriz-briefing.md
+  - pipeline/steps/step-03-aprovacao-brief.md
+  - pipeline/steps/step-04-carlos-copy.md
+  - pipeline/steps/step-05-aprovacao-copy.md
+  - pipeline/steps/step-06-diana-design.md
+  - pipeline/steps/step-07-aprovacao-design-system.md
+  - pipeline/steps/step-08-henrique-html.md
+  - pipeline/steps/step-09-aprovacao-estrutura.md
+  - pipeline/steps/step-10-ana-animacao.md
+  - pipeline/steps/step-11-rodrigo-revisao.md
+  - pipeline/steps/step-12-aprovacao-qa.md
+  - pipeline/steps/step-13-pedro-publicacao.md
+  - pipeline/steps/step-14-entrega-final.md
