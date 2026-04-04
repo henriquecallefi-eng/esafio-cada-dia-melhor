@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Comunidade Desafio Cada Dia Melhor •Um espaço para mulheres que buscam evoluir juntas, com saúde, bem-estar, autoestima e apoio real.">
+  <meta name="theme-color" content="#4b4f3f">
+  <title>Comunidade Desafio Cada Dia Melhor</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --color-primary-50: #f0f2eb;
+      --color-primary-500: #4b4f3f;
+      --color-primary-700: #3d4232;
+      --color-primary-container: #636756;
+      --color-secondary-50: #fdf5f1;
+      --color-secondary-500: #805437;
+      --color-secondary-700: #603d29;
+      --color-secondary-container: #fdc39e;
+      --color-tertiary-500: #626039;
+      --color-surface: #fff8ef;
+      --color-surface-container-low: #fbf3e4;
+      --color-surface-container: #f5edde;
+      --color-surface-container-high: #efe7d8;
+      --color-surface-container-highest: #e9e2d3;
+      --color-surface-container-lowest: #ffffff;
+      --color-on-surface: #1e1b12;
+      --color-on-surface-variant: #464740;
+      --spacing-xs: 4px;
+      --spacing-sm: 8px;
+      --spacing-md: 16px;
+      --spacing-lg: 24px;
+      --spacing-xl: 32px;
+      --spacing-2xl: 48px;
+      --spacing-3xl: 64px;
+      --font-headline: 'Noto Serif', Georgia, serif;
+      --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --shadow-ambient: 0 12px 40px 0 rgba(30, 27, 18, 0.06);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      color: var(--color-on-surface);
+      background-color: var(--color-surface);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    h1, h2, h3, h4 { font-family: var(--font-headline); color: var(--color-primary-500); font-weight: 700; }
+    h1 { font-size: clamp(32px, 8vw, 64px); line-height: 1.2; letter-spacing: -0.02em; margin-bottom: var(--spacing-md); }
+    h2 { font-size: clamp(28px, 6vw, 48px); line-height: 1.25; letter-spacing: -0.01em; margin-bottom: var(--spacing-lg); }
+    h3 { font-size: clamp(20px, 4vw, 32px); line-height: 1.3; font-weight: 600; margin-bottom: var(--spacing-md); }
+    h4 { font-size: 20px; font-weight: 600; margin-bottom: var(--spacing-sm); }
+    p { line-height: 1.6; margin-bottom: var(--spacing-md); }
+    small { font-size: 14px; color: var(--color-on-surface-variant); }
+    a { color: var(--color-primary-500); text-decoration: none; transition: opacity 0.2s ease; }
+    a:hover { opacity: 0.75; }
+
+    button, .btn {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      border: none;
+      border-radius: 9999px;
+      padding: 12px 24px;
+      min-height: 44px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--spacing-sm);
+    }
+    .btn-primary { background-color: var(--color-primary-500); color: white; }
+    .btn-primary:hover { background-color: var(--color-primary-700); transform: scale(0.98); }
+    .btn-primary:active { background-color: #2a2d22; }
+    .btn-secondary { background-color: var(--color-surface-container); color: var(--color-primary-500); border: 1px solid rgba(75,79,63,0.3); }
+    .btn-secondary:hover { background-color: var(--color-primary-50); }
+
+    .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 var(--spacing-md); }
+    @media (min-width: 768px) { .container { padding: 0 var(--spacing-lg); } }
+    @media (min-width: 1024px) { .container { padding: 0 var(--spacing-xl); } }
+
+    /* ===================== LOADING SCREEN ===================== */
+    #loading-screen {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background-color: var(--color-surface);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.6s ease, visibility 0.6s ease;
+    }
+    #loading-screen.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+    #loading-screen .loader-logo {
+      animation: logoPulse 1.6s ease-in-out infinite;
+    }
+    @keyframes logoPulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.06); opacity: 0.85; }
+    }
+    #loading-screen .loader-dots {
+      display: flex;
+      gap: 8px;
+      margin-top: 32px;
+    }
+    #loading-screen .loader-dots span {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: var(--color-primary-500);
+      animation: dotBounce 1.2s ease-in-out infinite;
+    }
+    #loading-screen .loader-dots span:nth-child(2) { animation-delay: 0.2s; }
+    #loading-screen .loader-dots span:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes dotBounce {
+      0%, 80%, 100% { transform: translateY(0); opacity: 0.4; }
+      40% { transform: translateY(-10px); opacity: 1; }
+    }
+
+    /* ===================== HEADER ===================== */
+    header {
+      background-color: var(--color-surface);
+      border-bottom: 1px solid rgba(75, 79, 63, 0.1);
+      padding: var(--spacing-md) 0;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    nav { display: flex; align-items: center; justify-content: space-between; }
+    .logo-svg-wrap { display: flex; align-items: center; }
+    .logo-svg-wrap svg { height: 52px; width: auto; }
+    .nav-cta { display: none; }
+    @media (min-width: 768px) { .nav-cta { display: inline-flex; } }
+
+    /* ===================== HERO ===================== */
+    .hero { background-color: var(--color-surface); padding: var(--spacing-2xl) 0; }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--spacing-lg);
+      align-items: center;
+    }
+    @media (min-width: 768px) {
+      .hero-grid { grid-template-columns: 1fr 1fr; gap: var(--spacing-xl); }
+    }
+    .hero-logo-accent {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: var(--spacing-md);
+    }
+    .hero-logo-accent svg { height: 44px; width: auto; }
+    .hero-content h1 { color: var(--color-primary-500); margin-bottom: var(--spacing-md); }
+    .hero-subheadline { font-size: 16px; color: var(--color-on-surface-variant); margin-bottom: var(--spacing-lg); line-height: 1.7; }
+    .hero-cta { display: flex; gap: var(--spacing-md); margin-bottom: var(--spacing-md); flex-wrap: wrap; }
+    .hero-image-placeholder {
+      height: 400px;
+      background: linear-gradient(135deg, #f5edde 0%, #fbf3e4 100%);
+      border-radius: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #464740;
+      font-size: 14px;
+    }
+
+    /* ===================== PAIN ===================== */
+    .section-pain { background-color: var(--color-surface-container-low); padding: var(--spacing-2xl) 0; }
+    .pain-content { text-align: center; }
+    .pain-copy { font-size: 18px; line-height: 1.6; max-width: 600px; margin: 0 auto var(--spacing-lg); color: var(--color-on-surface-variant); }
+    .pain-resolution { font-size: 16px; color: var(--color-primary-500); font-weight: 500; }
+
+    /* ===================== FEATURES ===================== */
+    .section-features { background-color: var(--color-surface); padding: var(--spacing-2xl) 0; }
+    .features-grid { display: grid; grid-template-columns: 1fr; gap: var(--spacing-lg); }
+    @media (min-width: 768px) { .features-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1024px) { .features-grid { grid-template-columns: repeat(3, 1fr); } }
+    .feature-card {
+      background-color: var(--color-surface-container-lowest);
+      padding: var(--spacing-lg);
+      border-radius: 32px;
+      box-shadow: var(--shadow-ambient);
+      transition: transform 0.2s ease;
+    }
+    .feature-card:hover { transform: scale(0.98); }
+    .feature-icon {
+      font-size: 28px;
+      margin-bottom: var(--spacing-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      background-color: var(--color-primary-50);
+      border-radius: 12px;
+    }
+    .feature-card h4 { color: var(--color-primary-500); margin-bottom: var(--spacing-sm); }
+    .feature-card p { font-size: 14px; color: var(--color-on-surface-variant); margin-bottom: 0; }
+
+    /* ===================== PILLARS SECTION ===================== */
+    .section-pillars { background-color: var(--color-surface); padding: var(--spacing-2xl) 0; }
+    .pillars-intro { text-align: center; margin-bottom: var(--spacing-2xl); }
+    .pillars-intro h2 { font-size: clamp(28px, 6vw, 48px); margin-bottom: var(--spacing-md); }
+    .pillars-intro p { font-size: 18px; color: var(--color-on-surface-variant); max-width: 600px; margin-left: auto; margin-right: auto; }
+    .pillars-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--spacing-lg); }
+    .pillar-card { background-color: var(--color-surface-container-lowest); border: 1px solid rgba(75,79,63,0.1); border-radius: 12px; padding: var(--spacing-lg); text-align: center; }
+    .pillar-icon { font-size: 48px; margin-bottom: var(--spacing-md); }
+    .pillar-card h4 { margin-bottom: var(--spacing-sm); }
+    .pillar-card p { font-size: 14px; color: var(--color-on-surface-variant); }
+
+    /* ===================== SOCIAL PROOF / TESTIMONIALS ===================== */
+    .section-social { background-color: var(--color-surface); padding: var(--spacing-2xl) 0; overflow: hidden; }
+    .social-stat { font-size: clamp(24px, 6vw, 48px); font-weight: 700; color: var(--color-primary-500); margin-bottom: var(--spacing-md); font-family: var(--font-headline); text-align: center; }
+    .social-quote { font-size: 16px; font-style: italic; color: var(--color-on-surface-variant); margin-bottom: var(--spacing-xl); max-width: 500px; margin-left: auto; margin-right: auto; text-align: center; }
+
+    /* Testimonial Carousel */
+    .testimonial-carousel-wrap { position: relative; width: 100%; margin-top: var(--spacing-lg); }
+    .testimonial-track-outer {
+      overflow-x: scroll;
+      overflow-y: visible;
+      scroll-behavior: smooth;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+      padding: var(--spacing-md) 0 var(--spacing-lg);
+    }
+    .testimonial-track-outer::-webkit-scrollbar { display: none; }
+    .testimonial-track {
+      display: flex;
+      gap: 16px;
+      padding: 0 var(--spacing-md);
+      width: max-content;
+    }
+
+    /* Testimonial Card */
+    .t-card {
+      width: 280px;
+      height: 460px;
+      border-radius: 28px;
+      background: linear-gradient(160deg, #f7f4ef 0%, #fff9eb 100%);
+      box-shadow: 0 8px 32px rgba(30, 27, 18, 0.08);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: var(--spacing-lg);
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      flex-shrink: 0;
+      animation: cardFadeIn 0.5s ease both;
+    }
+    .t-card:nth-child(1) { animation-delay: 0.0s; }
+    .t-card:nth-child(2) { animation-delay: 0.1s; }
+    .t-card:nth-child(3) { animation-delay: 0.2s; }
+    .t-card:nth-child(4) { animation-delay: 0.3s; }
+    .t-card:nth-child(5) { animation-delay: 0.4s; }
+    .t-card:nth-child(6) { animation-delay: 0.5s; }
+    @keyframes cardFadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .t-card:hover {
+      transform: rotate(2deg) scale(1.02);
+      box-shadow: 0 16px 48px rgba(30, 27, 18, 0.14);
+    }
+    .t-card-bg {
+      position: absolute;
+      inset: 0;
+      opacity: 0.12;
+      background-size: cover;
+      background-position: center;
+      border-radius: 28px;
+    }
+    .t-card-avatar {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid rgba(75, 79, 63, 0.25);
+      filter: saturate(0.3) sepia(0.3);
+      position: relative;
+      z-index: 1;
+      margin-bottom: var(--spacing-md);
+      flex-shrink: 0;
+    }
+    .t-card-quote {
+      font-family: var(--font-headline);
+      font-size: 15px;
+      font-style: italic;
+      color: rgba(30, 27, 18, 0.75);
+      text-align: center;
+      line-height: 1.55;
+      position: relative;
+      z-index: 1;
+      margin-bottom: var(--spacing-md);
+    }
+    .t-card-name {
+      font-family: var(--font-headline);
+      font-size: 17px;
+      color: rgba(30, 27, 18, 0.75);
+      text-align: center;
+      font-style: italic;
+      position: relative;
+      z-index: 1;
+      margin-bottom: 4px;
+    }
+    .t-card-role {
+      font-size: 13px;
+      color: var(--color-secondary-500);
+      text-align: center;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      text-decoration-thickness: 1px;
+      position: relative;
+      z-index: 1;
+    }
+    .t-card-hint {
+      font-size: 11px;
+      color: var(--color-on-surface-variant);
+      margin-top: var(--spacing-sm);
+      opacity: 0.6;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Carousel Navigation */
+    .testimonial-nav {
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+      padding: 0 var(--spacing-md);
+      margin-top: 4px;
+    }
+    .t-nav-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: var(--color-primary-500);
+      color: white;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.2s ease, opacity 0.2s ease;
+      min-height: unset;
+      padding: 0;
+      font-size: 16px;
+    }
+    .t-nav-btn:hover { background-color: var(--color-primary-700); }
+    .t-nav-btn:disabled { opacity: 0.35; cursor: default; }
+
+    /* Testimonial Modal */
+    .t-modal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 500;
+      background: rgba(30, 27, 18, 0.5);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 20px;
+      overflow-y: auto;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+    .t-modal-overlay.open { opacity: 1; visibility: visible; }
+    .t-modal {
+      background: linear-gradient(160deg, #f7f4ef 0%, #fff9eb 100%);
+      border-radius: 28px;
+      max-width: 640px;
+      width: 100%;
+      margin-top: 40px;
+      padding: 40px var(--spacing-lg);
+      position: relative;
+      transform: translateY(24px);
+      transition: transform 0.35s ease;
+    }
+    .t-modal-overlay.open .t-modal { transform: translateY(0); }
+    .t-modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--color-primary-500);
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+    }
+    .t-modal-role { font-size: 14px; color: var(--color-secondary-500); text-decoration: underline; text-underline-offset: 6px; margin-bottom: var(--spacing-sm); }
+    .t-modal-name { font-family: var(--font-headline); font-size: 28px; font-style: italic; color: rgba(30,27,18,0.8); margin-bottom: var(--spacing-lg); }
+    .t-modal-quote { font-size: 22px; font-family: var(--font-headline); font-style: italic; color: rgba(30,27,18,0.75); line-height: 1.5; }
+    .t-modal-quote::before { content: '\201C'; font-size: 36px; line-height: 0; vertical-align: -0.5em; margin-right: 4px; color: var(--color-secondary-500); }
+
+    /* ===================== CTA ===================== */
+    .section-cta { background-color: var(--color-surface-container-low); padding: var(--spacing-2xl) 0; }
+    .cta-content { text-align: center; max-width: 600px; margin: 0 auto; }
+    .cta-content p { font-size: 18px; color: var(--color-on-surface-variant); margin-bottom: var(--spacing-lg); }
+    .cta-button-wrapper { margin-bottom: var(--spacing-lg); }
+    .cta-microcopy { font-size: 12px; color: var(--color-on-surface-variant); font-weight: 500; }
+
+    /* ===================== FAQ ===================== */
+    .section-faq { background-color: var(--color-surface); padding: var(--spacing-2xl) 0; }
+    .faq-list { max-width: 700px; margin: 0 auto; }
+    /* ===================== COMPANIES ===================== */
+    .section-companies { background-color: var(--color-surface-container-low); padding: var(--spacing-2xl) 0; }
+    .companies-content { text-align: center; max-width: 600px; margin: 0 auto; }
+    .companies-content p { font-size: 16px; color: var(--color-on-surface-variant); margin-bottom: var(--spacing-lg); }
+
+    /* ===================== FOOTER ===================== */
+    footer { background-color: var(--color-surface-container); padding: var(--spacing-xl) 0; border-top: 1px solid rgba(75,79,63,0.1); }
+    .footer-content { display: grid; grid-template-columns: 1fr; gap: var(--spacing-lg); }
+    @media (min-width: 768px) { .footer-content { grid-template-columns: 1fr repeat(3, auto); align-items: start; gap: var(--spacing-xl); } }
+    .footer-brand { display: flex; flex-direction: column; gap: var(--spacing-sm); }
+    .footer-brand svg { height: 64px; width: auto; }
+    .footer-brand-tagline { font-size: 13px; color: var(--color-on-surface-variant); max-width: 200px; }
+    .footer-section h4 { margin-bottom: var(--spacing-md); font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; }
+    .footer-links { list-style: none; }
+    .footer-links li { margin-bottom: var(--spacing-sm); }
+    .footer-links a { font-size: 14px; color: var(--color-on-surface-variant); }
+    .footer-links a:hover { color: var(--color-primary-500); }
+    .footer-bottom { margin-top: var(--spacing-xl); padding-top: var(--spacing-lg); border-top: 1px solid rgba(75,79,63,0.1); text-align: center; color: var(--color-on-surface-variant); font-size: 12px; }
+
+    /* ===================== UTILITIES ===================== */
+    .eyebrow { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-secondary-500); margin-bottom: var(--spacing-sm); }
+    .text-center { text-align: center; }
+    .mt-lg { margin-top: var(--spacing-lg); }
+    .mt-xl { margin-top: var(--spacing-xl); }
+    .mb-lg { margin-bottom: var(--spacing-lg); }
+
+    /* ===================== MOBILE OVERRIDES ===================== */
+    @media (max-width: 767px) {
+      h1 { font-size: 32px; }
+      h2 { font-size: 26px; }
+      .hero-subheadline, .pain-copy { font-size: 16px; }
+      .features-grid, .pillars-grid { gap: var(--spacing-md); }
+      .feature-card, .pillar-card { padding: var(--spacing-md); }
+      .hero-image-placeholder { display: none !important; }
+      body { padding-bottom: 80px; }
+      .t-card { width: 240px; height: 420px; }
+    }
+
+    /* Sticky CTA •mobile only */
+    .sticky-cta { display: none; }
+    @media (max-width: 767px) {
+      .sticky-cta {
+        display: flex;
+        position: fixed;
+        bottom: 0; left: 0; right: 0;
+        z-index: 100;
+        padding: var(--spacing-md);
+        background: linear-gradient(to top, var(--color-surface) 80%, transparent);
+        justify-content: center;
+      }
+      .sticky-cta .btn {
+        width: 100%;
+        max-width: 360px;
+        font-size: 15px;
+        padding: 14px 24px;
+        box-shadow: 0 4px 24px rgba(75, 79, 63, 0.25);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ===================== LOADING SCREEN ===================== -->
+  <div id="loading-screen">
+    <div class="loader-logo">
+      <img src="logo.png" alt="Desafio Cada Dia Melhor" style="height: 185px; width: auto;">
+    </div>
+    <div class="loader-dots">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+
+  <!-- ===================== HEADER ===================== -->
+  <header>
+    <nav class="container">
+      <a href="#" class="logo-svg-wrap" aria-label="Desafio Cada Dia Melhor - Início">
+        <img src="logo.png" alt="Desafio Cada Dia Melhor" style="height: 52px; width: auto;">
+      </a>
+      <a href="https://chat.whatsapp.com/JRNVFzS1onGFsH5xqPVp8R?mode=gi_t" target="_blank" rel="noopener noreferrer" class="btn btn-primary nav-cta">
+        Quero Fazer Parte
+      </a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ===================== HERO ===================== -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-content">
+            <p class="eyebrow">Comunidade para mulheres</p>
+            <h1>Você não precisa continuar se deixando por último.</h1>
+            <p class="hero-subheadline">Uma comunidade de 500+ mulheres que evoluem juntas •com saúde, equilíbrio, autoestima e apoio real.</p>
+            <div class="hero-cta">
+              <a href="https://chat.whatsapp.com/JRNVFzS1onGFsH5xqPVp8R?mode=gi_t" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                Quero Fazer Parte Agora
+              </a>
+            </div>
+          </div>
+          <div class="hero-image-placeholder" style="height:400px;background:linear-gradient(135deg,#f5edde 0%,#fbf3e4 100%);border-radius:32px;display:flex;align-items:center;justify-content:center;color:#464740;font-size:14px;">
+            [Imagem Hero]
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== PAIN ===================== -->
+    <section class="section-pain">
+      <div class="container">
+        <div class="pain-content">
+          <h2>Você cuida de tudo. Da casa. Do trabalho. Da família. Mas... e de você?</h2>
+          <p class="pain-copy">Se isso faz sentido para você, respira: você não está sozinha. E você não precisa continuar assim.</p>
+          <p class="pain-resolution">A Comunidade Desafio Cada Dia Melhor nasceu para isso.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== FEATURES ===================== -->
+    <section class="section-features">
+      <div class="container">
+        <h2 class="text-center mb-lg">Como Funciona</h2>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">💬</div>
+            <h4>Grupo de WhatsApp</h4>
+            <p>Interaja diariamente com mulheres que entendem sua realidade.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">📚</div>
+            <h4>Conteúdo Prático</h4>
+            <p>Nada de teoria vazia •conteúdos focados em ação e resultados reais.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">✨</div>
+            <h4>Dinâmicas Semanais</h4>
+            <p>Exercícios e desafios planejados para tirar você da zona de conforto.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🎥</div>
+            <h4>Encontros Online</h4>
+            <p>Mentorias e trocas ao vivo para aprofundar os pilares da comunidade.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🧘</div>
+            <h4>Saúde &amp; Bem-estar</h4>
+            <p>Atividades guiadas para equilibrar corpo e mente todos os dias.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🤝</div>
+            <h4>Amizades Reais</h4>
+            <p>Amizades reais com mulheres que compartilham seus valores.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== PILLARS ===================== -->
+    <section class="section-pillars">
+      <div class="container">
+        <div class="pillars-intro">
+          <h2>Os 4 Pilares da Evolução</h2>
+          <p>Aqui é sobre evolução real. Mulher, Mente, Saúde, Autoestima e Vida inteira.</p>
+        </div>
+        <div class="pillars-grid">
+          <div class="pillar-card">
+            <div class="pillar-icon">❤️</div>
+            <h4>Saúde</h4>
+            <p style="font-size:14px;color:var(--color-on-surface-variant);">Corpo e mente equilibrados</p>
+          </div>
+          <div class="pillar-card">
+            <div class="pillar-icon">🧠</div>
+            <h4>Bem-estar</h4>
+            <p style="font-size:14px;color:var(--color-on-surface-variant);">Clareza e paz mental</p>
+          </div>
+          <div class="pillar-card">
+            <div class="pillar-icon">🌸</div>
+            <h4>Autocuidado</h4>
+            <p style="font-size:14px;color:var(--color-on-surface-variant);">Prioridade genuína consigo</p>
+          </div>
+          <div class="pillar-card">
+            <div class="pillar-icon">💼</div>
+            <h4>Negócios</h4>
+            <p style="font-size:14px;color:var(--color-on-surface-variant);">Crescimento profissional</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SOCIAL PROOF + TESTIMONIALS ===================== -->
+    <section class="section-social">
+      <div class="container">
+        <p class="social-stat">+500 mulheres em movimento</p>
+        <p class="social-quote">"Encontrei o meu tempo aqui." •Juliana, Membro desde 2023</p>
+      </div>
+
+      <!-- Testimonial Carousel (full bleed) -->
+      <div class="testimonial-carousel-wrap" id="testimonialCarousel">
+        <div class="testimonial-track-outer" id="tTrack">
+          <div class="testimonial-track" id="tTrackInner">
+
+            <div class="t-card" data-index="0"
+              data-name="Juliana Santos"
+              data-role="Membro desde 2023"
+              data-quote="Encontrei o meu tempo aqui. Pela primeira vez em anos me sinto prioridade •não culpa. A comunidade me devolveu algo que eu nem sabia que tinha perdido."
+            >
+              <div class="t-card-bg" style="background-image:url('https://images.unsplash.com/photo-1528458965990-428de4b1cb0d?w=400&fit=crop');"></div>
+              <img class="t-card-avatar" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop&crop=face" alt="Juliana Santos" loading="lazy">
+              <p class="t-card-quote">"Encontrei o meu tempo aqui. Pela primeira vez em anos me sinto prioridade..."</p>
+              <p class="t-card-name">juliana santos.</p>
+              <p class="t-card-role">Membro desde 2023</p>
+              <p class="t-card-hint">toque para ler mais</p>
+            </div>
+
+            <div class="t-card" data-index="1"
+              data-name="Camila Oliveira"
+              data-role="Empreendedora · 2 anos na comunidade"
+              data-quote="A comunidade mudou minha forma de ver o autocuidado. Não é egoísmo •é necessidade. Aprendi que cuidar de mim é o primeiro passo para cuidar de tudo ao redor."
+            >
+              <div class="t-card-bg" style="background-image:url('https://images.unsplash.com/photo-1528458965990-428de4b1cb0d?w=400&fit=crop');"></div>
+              <img class="t-card-avatar" src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=150&h=150&fit=crop&crop=face" alt="Camila Oliveira" loading="lazy">
+              <p class="t-card-quote">"Autocuidado não é egoísmo •é necessidade. Aprendi isso aqui..."</p>
+              <p class="t-card-name">camila oliveira.</p>
+              <p class="t-card-role">Empreendedora · 2 anos</p>
+              <p class="t-card-hint">toque para ler mais</p>
+            </div>
+
+            <div class="t-card" data-index="2"
+              data-name="Fernanda Costa"
+              data-role="Mãe e Profissional de Saúde"
+              data-quote="500 mulheres que te entendem de verdade. Não é um grupo de WhatsApp qualquer •é um lugar onde você pode ser honesta sobre suas lutas e ainda assim se sentir acolhida."
+            >
+              <div class="t-card-bg" style="background-image:url('https://images.unsplash.com/photo-1528458965990-428de4b1cb0d?w=400&fit=crop');"></div>
+              <img class="t-card-avatar" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face" alt="Fernanda Costa" loading="lazy">
+              <p class="t-card-quote">"500 mulheres que te entendem de verdade. Um lugar para ser honesta..."</p>
+              <p class="t-card-name">fernanda costa.</p>
+              <p class="t-card-role">Mãe e Prof. de Saúde</p>
+              <p class="t-card-hint">toque para ler mais</p>
+            </div>
+
+            <div class="t-card" data-index="3"
+              data-name="Mariana Lima"
+              data-role="Designer · Porto Alegre"
+              data-quote="Comecei sem saber por onde começar. Hoje sou uma mulher diferente. Os desafios semanais parecem pequenos, mas o efeito acumulado é transformador •sem pressão, no meu ritmo."
+            >
+              <div class="t-card-bg" style="background-image:url('https://images.unsplash.com/photo-1528458965990-428de4b1cb0d?w=400&fit=crop');"></div>
+              <img class="t-card-avatar" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=150&h=150&fit=crop&crop=face" alt="Mariana Lima" loading="lazy">
+              <p class="t-card-quote">"Comecei sem saber por onde começar. Hoje sou uma mulher diferente..."</p>
+              <p class="t-card-name">mariana lima.</p>
+              <p class="t-card-role">Designer · Porto Alegre</p>
+              <p class="t-card-hint">toque para ler mais</p>
+            </div>
+
+            <div class="t-card" data-index="4"
+              data-name="Patrícia Mendes"
+              data-role="Gestora de RH"
+              data-quote="Os desafios semanais me tiraram da zona de conforto de um jeito leve e natural. Nunca senti que estava sendo cobrada •senti que estava sendo apoiada. Isso faz toda a diferença."
+            >
+              <div class="t-card-bg" style="background-image:url('https://images.unsplash.com/photo-1528458965990-428de4b1cb0d?w=400&fit=crop');"></div>
+              <img class="t-card-avatar" src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=150&h=150&fit=crop&crop=face" alt="Patrícia Mendes" loading="lazy">
+              <p class="t-card-quote">"Nunca senti que estava sendo cobrada •senti que estava sendo apoiada..."</p>
+              <p class="t-card-name">patrícia mendes.</p>
+              <p class="t-card-role">Gestora de RH</p>
+              <p class="t-card-hint">toque para ler mais</p>
+            </div>
+
+            <div class="t-card" data-index="5"
+              data-name="Amanda Rodrigues"
+              data-role="Empresária · Membro VIP"
+              data-quote="Aqui ninguém compara, todo mundo soma. Isso é tudo que eu precisava •um espaço sem competição, onde cada conquista de uma é celebrada por todas. Ainda bem que entrei."
+            >
+              <div class="t-card-bg" style="background-image:url('https://images.unsplash.com/photo-1528458965990-428de4b1cb0d?w=400&fit=crop');"></div>
+              <img class="t-card-avatar" src="https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=150&h=150&fit=crop&crop=face" alt="Amanda Rodrigues" loading="lazy">
+              <p class="t-card-quote">"Aqui ninguém compara, todo mundo soma. É tudo que eu precisava..."</p>
+              <p class="t-card-name">amanda rodrigues.</p>
+              <p class="t-card-role">Empresária · Membro VIP</p>
+              <p class="t-card-hint">toque para ler mais</p>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="testimonial-nav container">
+          <button class="t-nav-btn" id="tPrev" aria-label="Anterior" disabled>&#8592;</button>
+          <button class="t-nav-btn" id="tNext" aria-label="Próximo">&#8594;</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonial Modal -->
+    <div class="t-modal-overlay" id="tModal" role="dialog" aria-modal="true" aria-label="Depoimento completo">
+      <div class="t-modal" id="tModalInner">
+        <button class="t-modal-close" id="tModalClose" aria-label="Fechar">&#x2715;</button>
+        <p class="t-modal-role" id="tModalRole"></p>
+        <p class="t-modal-name" id="tModalName"></p>
+        <p class="t-modal-quote" id="tModalQuote"></p>
+      </div>
+    </div>
+
+    <!-- ===================== CTA ===================== -->
+    <section class="section-cta">
+      <div class="container">
+        <div class="cta-content">
+          <h2>Se você sente que está na hora de voltar a ser prioridade...</h2>
+          <p>Esse é o seu momento.</p>
+          <div class="cta-button-wrapper">
+            <a href="https://chat.whatsapp.com/JRNVFzS1onGFsH5xqPVp8R?mode=gi_t" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="font-size:16px;padding:14px 32px;">
+              Quero Fazer Parte Agora
+            </a>
+          </div>
+          <p class="cta-microcopy">Clique acima e entre para o grupo de pré-adesão</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== FAQ ===================== -->
+    <section class="section-faq">
+      <div class="container">
+        <h2 class="text-center mb-lg">Dúvidas Frequentes</h2>
+        <div class="faq-list">
+          <div class="faq-item">
+            <div class="faq-question" role="button" tabindex="0" aria-expanded="false" aria-controls="faq-1">
+              <span>Eu não tenho tempo</span>
+              <span class="faq-toggle">▼</span>
+            </div>
+            <div class="faq-answer" id="faq-1">
+              <p>Justo por isso você precisa estar aqui. Vamos te ajudar a retomar as rédeas da sua agenda e ser sua prioridade novamente.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question" role="button" tabindex="0" aria-expanded="false" aria-controls="faq-2">
+              <span>Não sou empreendedora</span>
+              <span class="faq-toggle">▼</span>
+            </div>
+            <div class="faq-answer" id="faq-2">
+              <p>A comunidade é para mulheres. Seus negócios são apenas uma das consequências da sua evolução pessoal.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question" role="button" tabindex="0" aria-expanded="false" aria-controls="faq-3">
+              <span>Não sei por onde começar</span>
+              <span class="faq-toggle">▼</span>
+            </div>
+            <div class="faq-answer" id="faq-3">
+              <p>Nós pegamos na sua mão. O método é feito para que cada passo seja natural e leve.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== COMPANIES ===================== -->
+    <section class="section-companies">
+      <div class="container">
+        <div class="companies-content">
+          <h2>Tem um negócio e quer se conectar com a comunidade?</h2>
+          <p>Conheça nosso programa de parcerias para empresas e profissionais que querem alcançar mulheres empreendedoras e em desenvolvimento.</p>
+          <a href="https://wa.me/5551984632545" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+            Quero Saber Mais
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== STICKY MOBILE CTA ===================== -->
+  <div class="sticky-cta" aria-hidden="true">
+    <a href="https://chat.whatsapp.com/JRNVFzS1onGFsH5xqPVp8R?mode=gi_t" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+      Quero Fazer Parte Agora
+    </a>
+  </div>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <img src="logo.png" alt="Desafio Cada Dia Melhor" style="height: 80px; width: auto;">
+          <p class="footer-brand-tagline">Seja sua prioridade. Evolua juntas.</p>
+        </div>
+
+        <div class="footer-section">
+          <h4>Acesso</h4>
+          <ul class="footer-links">
+            <li><a href="https://chat.whatsapp.com/JRNVFzS1onGFsH5xqPVp8R?mode=gi_t" target="_blank" rel="noopener noreferrer">Entrar na Comunidade</a></li>
+            <li><a href="https://wa.me/5551984632545" target="_blank" rel="noopener noreferrer">Parcerias</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h4>Redes</h4>
+          <ul class="footer-links">
+            <li><a href="https://chat.whatsapp.com/JRNVFzS1onGFsH5xqPVp8R?mode=gi_t" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
+            <li><a href="https://www.instagram.com/desafiocadadiamelhor/" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Comunidade Desafio Cada Dia Melhor. Todos os direitos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ===================== LOADING SCREEN =====================
+    (function() {
+      var screen = document.getElementById('loading-screen');
+      if (!screen) return;
+      // Hide after fonts + 1.6s min display
+      var minTime = 1600;
+      var start = Date.now();
+      function hide() {
+        var elapsed = Date.now() - start;
+        var wait = Math.max(0, minTime - elapsed);
+        setTimeout(function() {
+          screen.classList.add('hidden');
+          setTimeout(function() { screen.remove(); }, 700);
+        }, wait);
+      }
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(hide);
+      } else {
+        window.addEventListener('load', hide);
+      }
+    })();
+
+    // ===================== FAQ ACCORDION =====================
+    document.querySelectorAll('.faq-question').forEach(function(q) {
+      q.addEventListener('click', function() {
+        var item = this.parentElement;
+        var answer = document.getElementById(this.getAttribute('aria-controls'));
+        var isOpen = this.getAttribute('aria-expanded') === 'true';
+        document.querySelectorAll('.faq-item').forEach(function(other) {
+          if (other !== item) {
+            var oq = other.querySelector('.faq-question');
+            var oa = other.querySelector('.faq-answer');
+            oq.setAttribute('aria-expanded', 'false');
+            oa.classList.remove('open');
+            oq.querySelector('.faq-toggle').classList.remove('open');
+          }
+        });
+        this.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
+        answer.classList.toggle('open', !isOpen);
+        this.querySelector('.faq-toggle').classList.toggle('open', !isOpen);
+      });
+      q.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); this.click(); }
+      });
+    });
+
+    // ===================== SMOOTH SCROLL =====================
+    document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        var href = this.getAttribute('href');
+        if (href !== '#' && document.querySelector(href)) {
+          e.preventDefault();
+          document.querySelector(href).scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // ===================== CTA TRACKING =====================
+    document.querySelectorAll('a[href*="chat.whatsapp.com"]').forEach(function(link) {
+      link.addEventListener('click', function() {
+        if (window.gtag) gtag('event', 'cta_whatsapp', { section: (this.closest('section') || {}).className || 'unknown', text: this.textContent.trim() });
+      });
+    });
+
+    // ===================== TESTIMONIAL CAROUSEL =====================
+    (function() {
+      var track = document.getElementById('tTrack');
+      var prevBtn = document.getElementById('tPrev');
+      var nextBtn = document.getElementById('tNext');
+      var modal = document.getElementById('tModal');
+      var modalName = document.getElementById('tModalName');
+      var modalRole = document.getElementById('tModalRole');
+      var modalQuote = document.getElementById('tModalQuote');
+      var closeBtn = document.getElementById('tModalClose');
+      var SCROLL_AMOUNT = window.innerWidth < 768 ? 256 : 320;
+
+      function updateButtons() {
+        if (!track) return;
+        prevBtn.disabled = track.scrollLeft <= 0;
+        nextBtn.disabled = track.scrollLeft >= track.scrollWidth - track.clientWidth - 2;
+      }
+
+      if (track) {
+        track.addEventListener('scroll', updateButtons);
+        updateButtons();
+      }
+      if (prevBtn) prevBtn.addEventListener('click', function() { track.scrollBy({ left: -SCROLL_AMOUNT, behavior: 'smooth' }); });
+      if (nextBtn) nextBtn.addEventListener('click', function() { track.scrollBy({ left: SCROLL_AMOUNT, behavior: 'smooth' }); });
+
+      // Card click → open modal
+      document.querySelectorAll('.t-card').forEach(function(card) {
+        card.addEventListener('click', function() {
+          var name = this.dataset.name;
+          var role = this.dataset.role;
+          var quote = this.dataset.quote;
+          modalName.textContent = name.toLowerCase() + '.';
+          modalRole.textContent = role;
+          modalQuote.textContent = quote;
+          modal.classList.add('open');
+          // Lock scroll
+          var scrollY = window.scrollY;
+          document.body.style.position = 'fixed';
+          document.body.style.top = '-' + scrollY + 'px';
+          document.body.style.width = '100%';
+          document.body.dataset.scrollY = scrollY;
+        });
+        card.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); this.click(); }
+        });
+        card.setAttribute('tabindex', '0');
+        card.setAttribute('role', 'button');
+      });
+
+      function closeModal() {
+        modal.classList.remove('open');
+        var scrollY = parseInt(document.body.dataset.scrollY || '0', 10);
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.width = '';
+        window.scrollTo({ top: scrollY, behavior: 'instant' });
+      }
+
+      if (closeBtn) closeBtn.addEventListener('click', closeModal);
+      if (modal) {
+        modal.addEventListener('click', function(e) { if (e.target === modal) closeModal(); });
+        document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && modal.classList.contains('open')) closeModal(); });
+      }
+    })();
+  </script>
+</body>
+</html>
