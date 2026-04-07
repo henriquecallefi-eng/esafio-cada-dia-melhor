@@ -218,7 +218,7 @@
     .pillars-intro p { font-size: 18px; color: var(--color-on-surface-variant); max-width: 600px; margin-left: auto; margin-right: auto; }
     .pillars-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--spacing-lg); }
     .pillar-card { background-color: var(--color-surface-container-lowest); border: 1px solid rgba(75,79,63,0.1); border-radius: 12px; padding: var(--spacing-lg); text-align: center; }
-    .pillar-icon { font-size: 48px; margin-bottom: var(--spacing-md); }
+    .pillar-icon { margin-bottom: var(--spacing-md); display: flex; align-items: center; justify-content: center; }
     .pillar-card h4 { margin-bottom: var(--spacing-sm); }
     .pillar-card p { font-size: 14px; color: var(--color-on-surface-variant); }
 
@@ -250,7 +250,7 @@
       width: 280px;
       height: 460px;
       border-radius: 28px;
-      background: linear-gradient(160deg, #f7f4ef 0%, #fff9eb 100%);
+      background: var(--color-primary-50);
       box-shadow: 0 8px 32px rgba(30, 27, 18, 0.08);
       display: flex;
       flex-direction: column;
@@ -265,11 +265,11 @@
       animation: cardFadeIn 0.5s ease both;
     }
     .t-card:nth-child(1) { animation-delay: 0.0s; }
-    .t-card:nth-child(2) { animation-delay: 0.1s; }
-    .t-card:nth-child(3) { animation-delay: 0.2s; }
+    .t-card:nth-child(2) { animation-delay: 0.1s; background: var(--color-secondary-50); }
+    .t-card:nth-child(3) { animation-delay: 0.2s; background: var(--color-surface-container-high); }
     .t-card:nth-child(4) { animation-delay: 0.3s; }
-    .t-card:nth-child(5) { animation-delay: 0.4s; }
-    .t-card:nth-child(6) { animation-delay: 0.5s; }
+    .t-card:nth-child(5) { animation-delay: 0.4s; background: var(--color-secondary-50); }
+    .t-card:nth-child(6) { animation-delay: 0.5s; background: var(--color-surface-container-high); }
     @keyframes cardFadeIn {
       from { opacity: 0; transform: translateY(20px); }
       to   { opacity: 1; transform: translateY(0); }
@@ -292,7 +292,6 @@
       border-radius: 50%;
       object-fit: cover;
       border: 3px solid rgba(75, 79, 63, 0.25);
-      filter: saturate(0.3) sepia(0.3);
       position: relative;
       z-index: 1;
       margin-bottom: var(--spacing-md);
@@ -442,7 +441,8 @@
     .footer-content { display: grid; grid-template-columns: 1fr; gap: var(--spacing-lg); }
     @media (min-width: 768px) { .footer-content { grid-template-columns: 1fr repeat(3, auto); align-items: start; gap: var(--spacing-xl); } }
     .footer-brand { display: flex; flex-direction: column; gap: var(--spacing-sm); }
-    .footer-brand svg { height: 64px; width: auto; }
+    .footer-brand-top { display: flex; flex-direction: row; align-items: center; gap: var(--spacing-md); }
+    .footer-brand svg { height: 44px; width: auto; }
     .footer-brand-tagline { font-size: 13px; color: var(--color-on-surface-variant); max-width: 200px; }
     .footer-section h4 { margin-bottom: var(--spacing-md); font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; }
     .footer-links { list-style: none; }
@@ -532,7 +532,7 @@
               </a>
             </div>
           </div>
-          <div class="hero-image-placeholder" style="height:400px;background-image:url('https://images.unsplash.com/photo-1518611505868-48f68b584d0d?w=800&fit=crop&crop=entropy');background-size:cover;background-position:center;border-radius:32px;display:flex;align-items:center;justify-content:center;color:#464740;font-size:14px;box-shadow:0 16px 48px rgba(0,0,0,0.1);">
+          <div class="hero-image-placeholder" style="height:400px;background-image:url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&fit=crop&crop=top');background-size:cover;background-position:center top;border-radius:32px;box-shadow:0 16px 48px rgba(0,0,0,0.1);">
           </div>
         </div>
       </div>
@@ -549,44 +549,6 @@
       </div>
     </section>
 
-    <!-- ===================== FEATURES ===================== -->
-    <section class="section-features">
-      <div class="container">
-        <h2 class="text-center mb-lg">Como Funciona</h2>
-        <div class="features-grid">
-          <div class="feature-card">
-            <div class="feature-icon">💬</div>
-            <h4>Grupo de WhatsApp</h4>
-            <p>Interaja diariamente com mulheres que entendem sua realidade.</p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon">📚</div>
-            <h4>Conteúdo Prático</h4>
-            <p>Nada de teoria vazia •conteúdos focados em ação e resultados reais.</p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon">✨</div>
-            <h4>Dinâmicas Semanais</h4>
-            <p>Exercícios e desafios planejados para tirar você da zona de conforto.</p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon">🎥</div>
-            <h4>Encontros Online</h4>
-            <p>Mentorias e trocas ao vivo para aprofundar os pilares da comunidade.</p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon">🧘</div>
-            <h4>Saúde &amp; Bem-estar</h4>
-            <p>Atividades guiadas para equilibrar corpo e mente todos os dias.</p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon">🤝</div>
-            <h4>Amizades Reais</h4>
-            <p>Amizades reais com mulheres que compartilham seus valores.</p>
-          </div>
-        </div>
-      </div>
-    </section>
 
     <!-- ===================== PILLARS ===================== -->
     <section class="section-pillars">
@@ -597,22 +559,22 @@
         </div>
         <div class="pillars-grid">
           <div class="pillar-card">
-            <div class="pillar-icon">❤️</div>
+            <div class="pillar-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--color-secondary-500)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402z"/></svg></div>
             <h4>Saúde</h4>
             <p style="font-size:14px;color:var(--color-on-surface-variant);">Corpo e mente equilibrados</p>
           </div>
           <div class="pillar-card">
-            <div class="pillar-icon">🧠</div>
+            <div class="pillar-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--color-secondary-500)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 4.44-1.16z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-4.44-1.16z"/></svg></div>
             <h4>Bem-estar</h4>
             <p style="font-size:14px;color:var(--color-on-surface-variant);">Clareza e paz mental</p>
           </div>
           <div class="pillar-card">
-            <div class="pillar-icon">🌸</div>
+            <div class="pillar-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--color-secondary-500)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a5 5 0 1 1 0 10A5 5 0 0 1 12 2z"/><path d="M12 14c-5.33 0-8 2.67-8 4v1h16v-1c0-1.33-2.67-4-8-4z"/><path d="M8 8.5c-.83.5-2 1.5-2 3"/><path d="M16 8.5c.83.5 2 1.5 2 3"/></svg></div>
             <h4>Autocuidado</h4>
             <p style="font-size:14px;color:var(--color-on-surface-variant);">Prioridade genuína consigo</p>
           </div>
           <div class="pillar-card">
-            <div class="pillar-icon">💼</div>
+            <div class="pillar-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--color-secondary-500)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg></div>
             <h4>Negócios</h4>
             <p style="font-size:14px;color:var(--color-on-surface-variant);">Crescimento profissional</p>
           </div>
@@ -637,8 +599,7 @@
               data-role="Membro desde 2023"
               data-quote="Encontrei o meu tempo aqui. Pela primeira vez em anos me sinto prioridade •não culpa. A comunidade me devolveu algo que eu nem sabia que tinha perdido."
             >
-              <div class="t-card-bg" style="background-image:url('https://images.unsplash.com/photo-1520763185298-1b434c919eba?w=400&fit=crop');"></div>
-              <img class="t-card-avatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face" alt="Juliana Santos" loading="lazy">
+              <img class="t-card-avatar" src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=150&h=150&fit=crop&crop=face" alt="Juliana Santos" loading="lazy">
               <p class="t-card-quote">"Encontrei o meu tempo aqui. Pela primeira vez em anos me sinto prioridade..."</p>
               <p class="t-card-name">juliana santos.</p>
               <p class="t-card-role">Membro desde 2023</p>
@@ -650,8 +611,7 @@
               data-role="Empreendedora · 2 anos na comunidade"
               data-quote="A comunidade mudou minha forma de ver o autocuidado. Não é egoísmo •é necessidade. Aprendi que cuidar de mim é o primeiro passo para cuidar de tudo ao redor."
             >
-              <div class="t-card-bg" style="background-image:url('https://images.unsplash.com/photo-1534308143481-c55f00be8e23?w=400&fit=crop');"></div>
-              <img class="t-card-avatar" src="https://images.unsplash.com/photo-1534308143481-c55f00be8e23?w=150&h=150&fit=crop&crop=face" alt="Camila Oliveira" loading="lazy">
+              <img class="t-card-avatar" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop&crop=face" alt="Camila Oliveira" loading="lazy">
               <p class="t-card-quote">"Autocuidado não é egoísmo •é necessidade. Aprendi isso aqui..."</p>
               <p class="t-card-name">camila oliveira.</p>
               <p class="t-card-role">Empreendedora · 2 anos</p>
@@ -663,8 +623,7 @@
               data-role="Mãe e Profissional de Saúde"
               data-quote="500 mulheres que te entendem de verdade. Não é um grupo de WhatsApp qualquer •é um lugar onde você pode ser honesta sobre suas lutas e ainda assim se sentir acolhida."
             >
-              <div class="t-card-bg" style="background-image:url('https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=400&fit=crop');"></div>
-              <img class="t-card-avatar" src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=150&h=150&fit=crop&crop=face" alt="Fernanda Costa" loading="lazy">
+              <img class="t-card-avatar" src="https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?w=150&h=150&fit=crop&crop=face" alt="Fernanda Costa" loading="lazy">
               <p class="t-card-quote">"500 mulheres que te entendem de verdade. Um lugar para ser honesta..."</p>
               <p class="t-card-name">fernanda costa.</p>
               <p class="t-card-role">Mãe e Prof. de Saúde</p>
@@ -676,8 +635,7 @@
               data-role="Designer · Porto Alegre"
               data-quote="Comecei sem saber por onde começar. Hoje sou uma mulher diferente. Os desafios semanais parecem pequenos, mas o efeito acumulado é transformador •sem pressão, no meu ritmo."
             >
-              <div class="t-card-bg" style="background-image:url('https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&fit=crop');"></div>
-              <img class="t-card-avatar" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face" alt="Mariana Lima" loading="lazy">
+              <img class="t-card-avatar" src="https://images.unsplash.com/photo-1554151228-14d9def656e4?w=150&h=150&fit=crop&crop=face" alt="Mariana Lima" loading="lazy">
               <p class="t-card-quote">"Comecei sem saber por onde começar. Hoje sou uma mulher diferente..."</p>
               <p class="t-card-name">mariana lima.</p>
               <p class="t-card-role">Designer · Porto Alegre</p>
@@ -689,8 +647,7 @@
               data-role="Gestora de RH"
               data-quote="Os desafios semanais me tiraram da zona de conforto de um jeito leve e natural. Nunca senti que estava sendo cobrada •senti que estava sendo apoiada. Isso faz toda a diferença."
             >
-              <div class="t-card-bg" style="background-image:url('https://images.unsplash.com/photo-1516426122078-823f76319b31?w=400&fit=crop');"></div>
-              <img class="t-card-avatar" src="https://images.unsplash.com/photo-1516426122078-823f76319b31?w=150&h=150&fit=crop&crop=face" alt="Patrícia Mendes" loading="lazy">
+              <img class="t-card-avatar" src="https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?w=150&h=150&fit=crop&crop=face" alt="Patrícia Mendes" loading="lazy">
               <p class="t-card-quote">"Nunca senti que estava sendo cobrada •senti que estava sendo apoiada..."</p>
               <p class="t-card-name">patrícia mendes.</p>
               <p class="t-card-role">Gestora de RH</p>
@@ -702,8 +659,7 @@
               data-role="Empresária · Membro VIP"
               data-quote="Aqui ninguém compara, todo mundo soma. Isso é tudo que eu precisava •um espaço sem competição, onde cada conquista de uma é celebrada por todas. Ainda bem que entrei."
             >
-              <div class="t-card-bg" style="background-image:url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&fit=crop');"></div>
-              <img class="t-card-avatar" src="https://images.unsplash.com/photo-1534308143481-c55f00be8e23?w=150&h=150&fit=crop&crop=face" alt="Amanda Rodrigues" loading="lazy">
+              <img class="t-card-avatar" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&h=150&fit=crop&crop=face" alt="Amanda Rodrigues" loading="lazy">
               <p class="t-card-quote">"Aqui ninguém compara, todo mundo soma. É tudo que eu precisava..."</p>
               <p class="t-card-name">amanda rodrigues.</p>
               <p class="t-card-role">Empresária · Membro VIP</p>
@@ -808,8 +764,10 @@
     <div class="container">
       <div class="footer-content">
         <div class="footer-brand">
-          <img src="logo.png" alt="Desafio Cada Dia Melhor" style="height: 60px; width: auto; max-width: 240px;">
-          <p class="footer-brand-tagline">Seja sua prioridade. Evolua juntas.</p>
+          <div class="footer-brand-top">
+            <img src="logo.png" alt="Desafio Cada Dia Melhor" style="height: 44px; width: auto; max-width: 150px; object-fit: contain; flex-shrink: 0;">
+            <p class="footer-brand-tagline" style="margin:0;">Seja sua prioridade. Evolua juntas.</p>
+          </div>
         </div>
 
         <div class="footer-section">
@@ -830,7 +788,7 @@
       </div>
 
       <div class="footer-bottom">
-        <p>&copy; 2026 Comunidade Desafio Cada Dia Melhor. Todos os direitos reservados.</p>
+        <p>&copy; 2026 Comunidade Desafio Cada Dia Melhor. Todos os direitos reservados. &nbsp;|&nbsp; <a href="https://desafiocadadiamelhor.com.br" target="_blank" rel="noopener noreferrer" style="color:var(--color-on-surface-variant);">desafiocadadiamelhor.com.br</a></p>
       </div>
     </div>
   </footer>
