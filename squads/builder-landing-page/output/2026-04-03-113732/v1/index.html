@@ -427,10 +427,13 @@
     .section-faq { background-color: var(--color-surface); padding: var(--spacing-2xl) 0; }
     .faq-list { max-width: 700px; margin: 0 auto; display: grid; gap: var(--spacing-lg); }
     .faq-item { background-color: var(--color-surface-container-low); border: 1px solid rgba(75,79,63,0.15); border-radius: 16px; padding: var(--spacing-lg); }
-    .faq-question { font-weight: 600; color: var(--color-primary-500); margin-bottom: var(--spacing-md); cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
-    .faq-toggle { display: none; }
-    .faq-answer { color: var(--color-on-surface); line-height: 1.6; }
+    .faq-question { font-weight: 600; color: var(--color-primary-500); margin-bottom: 0; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+    .faq-toggle { display: inline-block; font-size: 11px; color: var(--color-secondary-500); transition: transform 0.25s ease; flex-shrink: 0; }
+    .faq-toggle.open { transform: rotate(180deg); }
+    .faq-answer { display: none; color: var(--color-on-surface); line-height: 1.6; padding-top: var(--spacing-md); }
+    .faq-answer.open { display: block; animation: faqFadeIn 0.2s ease; }
     .faq-answer p { margin: 0; }
+    @keyframes faqFadeIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
     /* ===================== COMPANIES ===================== */
     .section-companies { background-color: var(--color-surface-container-low); padding: var(--spacing-2xl) 0; }
     .companies-content { text-align: center; max-width: 600px; margin: 0 auto; }
@@ -466,6 +469,9 @@
       .features-grid, .pillars-grid { gap: var(--spacing-md); }
       .feature-card, .pillar-card { padding: var(--spacing-md); }
       .hero-image-placeholder { display: none !important; }
+      .hero-content { text-align: center; }
+      .hero-cta { justify-content: center; }
+      .hero-logo-accent { justify-content: center; }
       body { padding-bottom: 80px; }
       .t-card { width: 240px; height: 420px; }
     }
@@ -509,7 +515,7 @@
   <header>
     <nav class="container">
       <a href="#" class="logo-svg-wrap" aria-label="Desafio Cada Dia Melhor - Início">
-        <img src="logo.png" alt="Desafio Cada Dia Melhor" style="height: 70px; width: auto;">
+        <img src="logo.png" alt="Desafio Cada Dia Melhor" style="height: 88px; width: auto;">
       </a>
       <a href="https://chat.whatsapp.com/JRNVFzS1onGFsH5xqPVp8R?mode=gi_t" target="_blank" rel="noopener noreferrer" class="btn btn-primary nav-cta">
         Quero Fazer Parte
@@ -595,74 +601,62 @@
           <div class="testimonial-track" id="tTrackInner">
 
             <div class="t-card" data-index="0"
-              data-name="Juliana Santos"
-              data-role="Membro desde 2023"
-              data-quote="Encontrei o meu tempo aqui. Pela primeira vez em anos me sinto prioridade •não culpa. A comunidade me devolveu algo que eu nem sabia que tinha perdido."
+              data-name="Analista de RH"
+              data-role="Analista de RH · Participando há 1 ano"
+              data-quote="Participar do grupo desafio das mulheres oportuniza as mulheres a se incentivarem desde a saúde, autoestima, empreender e investir no negócio umas nas outras. Um ambiente de aceitação e incentivo, onde Francielle coordena com maestria. Apenas pontos positivos!"
             >
-              <img class="t-card-avatar" src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=150&h=150&fit=crop&crop=face" alt="Juliana Santos" loading="lazy">
-              <p class="t-card-quote">"Encontrei o meu tempo aqui. Pela primeira vez em anos me sinto prioridade..."</p>
-              <p class="t-card-name">juliana santos.</p>
-              <p class="t-card-role">Membro desde 2023</p>
+              <img class="t-card-avatar" src="foto primeiro depoimento.jpeg" alt="Membro da comunidade" loading="lazy">
+              <p class="t-card-quote">"Um ambiente de aceitação e incentivo, onde Francielle coordena com maestria. Apenas pontos positivos!"</p>
+              <p class="t-card-name">analista de rh.</p>
+              <p class="t-card-role">Analista de RH · Participando há 1 ano</p>
               <p class="t-card-hint">toque para ler mais</p>
             </div>
 
             <div class="t-card" data-index="1"
               data-name="Camila Oliveira"
-              data-role="Empreendedora · 2 anos na comunidade"
-              data-quote="A comunidade mudou minha forma de ver o autocuidado. Não é egoísmo •é necessidade. Aprendi que cuidar de mim é o primeiro passo para cuidar de tudo ao redor."
+              data-role="Participando há 2 anos"
+              data-quote="Esse grupo é incrível!! É confortante saber que tanta mulher pensa em conjunto pra união... Pra juntas ficarmos mais fortes... E o melhor: saber que entre tantas, alguma de nós já passou por algo semelhante!!!"
             >
               <img class="t-card-avatar" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop&crop=face" alt="Camila Oliveira" loading="lazy">
-              <p class="t-card-quote">"Autocuidado não é egoísmo •é necessidade. Aprendi isso aqui..."</p>
+              <p class="t-card-quote">"Esse grupo é incrível! Confortante saber que tanta mulher pensa em conjunto. Juntas ficamos mais fortes..."</p>
               <p class="t-card-name">camila oliveira.</p>
-              <p class="t-card-role">Empreendedora · 2 anos</p>
+              <p class="t-card-role">Participando há 2 anos</p>
               <p class="t-card-hint">toque para ler mais</p>
             </div>
 
             <div class="t-card" data-index="2"
               data-name="Fernanda Costa"
-              data-role="Mãe e Profissional de Saúde"
-              data-quote="500 mulheres que te entendem de verdade. Não é um grupo de WhatsApp qualquer •é um lugar onde você pode ser honesta sobre suas lutas e ainda assim se sentir acolhida."
+              data-role="Participando há 1 ano"
+              data-quote="Me sinto super à vontade pra falar de mim aqui. Hoje me superei: fui ao mercado sozinha e, por incrível que pareça, não tive vontade de pegar nada fora da lista. Pequenas vitórias que a comunidade inspira!"
             >
               <img class="t-card-avatar" src="https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?w=150&h=150&fit=crop&crop=face" alt="Fernanda Costa" loading="lazy">
-              <p class="t-card-quote">"500 mulheres que te entendem de verdade. Um lugar para ser honesta..."</p>
+              <p class="t-card-quote">"Hoje me superei no mercado! Não tive vontade de pegar nada fora da lista. A comunidade inspira isso..."</p>
               <p class="t-card-name">fernanda costa.</p>
-              <p class="t-card-role">Mãe e Prof. de Saúde</p>
+              <p class="t-card-role">Participando há 1 ano</p>
               <p class="t-card-hint">toque para ler mais</p>
             </div>
 
             <div class="t-card" data-index="3"
               data-name="Mariana Lima"
-              data-role="Designer · Porto Alegre"
-              data-quote="Comecei sem saber por onde começar. Hoje sou uma mulher diferente. Os desafios semanais parecem pequenos, mas o efeito acumulado é transformador •sem pressão, no meu ritmo."
+              data-role="Participando há 6 meses"
+              data-quote="Obrigada a todas essas mulheres maravilhosas. Cada uma traz sua história de vida, mas todas com o mesmo propósito: servir e prosperar. Simplesmente amei. Que seja o primeiro de muitos!"
             >
               <img class="t-card-avatar" src="https://images.unsplash.com/photo-1554151228-14d9def656e4?w=150&h=150&fit=crop&crop=face" alt="Mariana Lima" loading="lazy">
-              <p class="t-card-quote">"Comecei sem saber por onde começar. Hoje sou uma mulher diferente..."</p>
+              <p class="t-card-quote">"Cada uma traz sua história, mas todas com o mesmo propósito: servir e prosperar. Que seja o primeiro de muitos!"</p>
               <p class="t-card-name">mariana lima.</p>
-              <p class="t-card-role">Designer · Porto Alegre</p>
+              <p class="t-card-role">Participando há 6 meses</p>
               <p class="t-card-hint">toque para ler mais</p>
             </div>
 
             <div class="t-card" data-index="4"
               data-name="Patrícia Mendes"
-              data-role="Gestora de RH"
-              data-quote="Os desafios semanais me tiraram da zona de conforto de um jeito leve e natural. Nunca senti que estava sendo cobrada •senti que estava sendo apoiada. Isso faz toda a diferença."
+              data-role="Participando há 1 ano"
+              data-quote="Por mais que eu me comunique bem sobre o que sei, tenho dificuldade em iniciar conversa com quem não conheço. As dinâmicas dos eventos são tão naturais e ao mesmo tempo desafiadoras que fazem isso fluir MUITO BEM!!"
             >
               <img class="t-card-avatar" src="https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?w=150&h=150&fit=crop&crop=face" alt="Patrícia Mendes" loading="lazy">
-              <p class="t-card-quote">"Nunca senti que estava sendo cobrada •senti que estava sendo apoiada..."</p>
+              <p class="t-card-quote">"As dinâmicas dos eventos são tão naturais e ao mesmo tempo desafiadoras. Fazem tudo fluir MUITO BEM!!"</p>
               <p class="t-card-name">patrícia mendes.</p>
-              <p class="t-card-role">Gestora de RH</p>
-              <p class="t-card-hint">toque para ler mais</p>
-            </div>
-
-            <div class="t-card" data-index="5"
-              data-name="Amanda Rodrigues"
-              data-role="Empresária · Membro VIP"
-              data-quote="Aqui ninguém compara, todo mundo soma. Isso é tudo que eu precisava •um espaço sem competição, onde cada conquista de uma é celebrada por todas. Ainda bem que entrei."
-            >
-              <img class="t-card-avatar" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&h=150&fit=crop&crop=face" alt="Amanda Rodrigues" loading="lazy">
-              <p class="t-card-quote">"Aqui ninguém compara, todo mundo soma. É tudo que eu precisava..."</p>
-              <p class="t-card-name">amanda rodrigues.</p>
-              <p class="t-card-role">Empresária · Membro VIP</p>
+              <p class="t-card-role">Participando há 1 ano</p>
               <p class="t-card-hint">toque para ler mais</p>
             </div>
 
@@ -765,7 +759,7 @@
       <div class="footer-content">
         <div class="footer-brand">
           <div class="footer-brand-top">
-            <img src="logo.png" alt="Desafio Cada Dia Melhor" style="height: 44px; width: auto; max-width: 150px; object-fit: contain; flex-shrink: 0;">
+            <img src="logo.png" alt="Desafio Cada Dia Melhor" style="height: 72px; width: auto; max-width: 220px; object-fit: contain; flex-shrink: 0;">
             <p class="footer-brand-tagline" style="margin:0;">Seja sua prioridade. Evolua juntas.</p>
           </div>
         </div>
